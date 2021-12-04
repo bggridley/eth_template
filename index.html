@@ -7,34 +7,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700&display=swap"
         rel="stylesheet">
     <script type="text/javascript" src="eth.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 </head>
 
 <body id="body">
-
-
-
-
     <canvas id="canvas" class="countdown">
 
-
-
     </canvas>
-
 
     <div class="modal" id="modal">
         <div class="modal_wrapper">
 
 
             <div class="mchild">
-                <a>EVEN WIDTH</a>
+                <a onclick="closeModal();" href="#roadmap">ROADMAP</a>
             </div>
 
             <div class="mchild">
-                <a>WITH THE</a>
+                <a onclick="closeModal();" href="#faq">FAQ</a>
             </div>
 
             <div class="mchild">
-                <a>RIGHT SIDE</a>
+                <a onclick="closeModal();">TEAM</a>
+            </div>
+
+            <div class="mchild">
+                <a href="https://opensea.io/account/insertnameofnft" target="_blank">MY NFT</a>
             </div>
 
             <div class="mchild">
@@ -43,21 +42,14 @@
         </div>
     </div>
 
-
-
     <div class="main">
-
-
         <div class="main__child border">
 
             <div class="title">
                 COMING SOON!
             </div>
 
-
-
             <div class="countdown_wrapper">
-
 
                 <div class="meter">
                     <span id="countdown_width" style="width: 100%"></span>
@@ -75,7 +67,7 @@
         </div>
 
         <div class="about">
-            <div class="title">
+            <div class="header">
                 Cool NFT Project
             </div>
 
@@ -105,19 +97,134 @@
                         flendo turgiduli rubent ocelli.</p>
                 </div>
             </div>
+        </div>
+
+        <div class="roadmap" id="roadmap">
+            <div class="header">
+                <a class="border m" style="padding:10px;"> Roadmap </a>
+
+            </div>
+
+            <div class="cards border m" style="margin-top:50px;padding-bottom:20px;">
+                <div class="card m">
+                    <div class="title">
+                        Stage 1
+                    </div>
+                    <p>Lugete, o Veneres Cupidinesque,
+                        et quantum est hominum venustiorum:
+                        passer mortuus est meae puellae,
+                        passer, deliciae meae puellae,
+                        quem plus illa oculis suis amabat.
+                        nam mellitus erat suamque norat
+                    </p>
+                </div>
+
+                <div class="card m">
+                    <p>Lugete, o Veneres Cupidinesque,
+                        et quantum est hominum venustiorum:
+                        passer mortuus est meae puellae,
+                        passer, deliciae meae puellae,
+                        quem plus illa oculis suis amabat.
+                        nam mellitus erat suamque norat
+                    </p>
+                </div>
+
+                <div class="card m ">
+                    <p>Lugete, o Veneres Cupidinesque,
+                        et quantum est hominum venustiorum:
+                        passer mortuus est meae puellae,
+                        passer, deliciae meae puellae,
+                        quem plus illa oculis suis amabat.
+                        nam mellitus erat suamque norat
+                    </p>
+                </div>
+
+                <div class="card m">
+                    <p>Lugete, o Veneres Cupidinesque,
+                        et quantum est hominum venustiorum:
+                        passer mortuus est meae puellae,
+                        passer, deliciae meae puellae,
+                        quem plus illa oculis suis amabat.
+                        nam mellitus erat suamque norat
+                    </p>
+                </div>
+            </div>
+
+
 
         </div>
 
+
+        <div style="width:100%; padding-top:5vh;">
+            <div id="marquee">
+                <div id="marquee_img">
+                    <img src="bunny.jpg">
+                    <img src="bunny.jpg">
+                    <img src="bunny.jpg">
+                    <img src="bunny.jpg">
+                    <img src="bunny.jpg">
+                    <img src="bunny.jpg">
+                    <img src="bunny.jpg">
+                    <img src="bunny.jpg">
+                     
+                </div>
+              </div>
+        </div>
+
+        <div class="about" id="faq" style="margin-top:-1px; overflow:auto; padding-bottom:2vw; margin-bottom:300px;">
+            <div class="header">
+                FAQ
+            </div>
+
+            <div style="width:80%; left:10%; position:relative">
+
+                <div class="q">
+                    What is NFT?
+                </div>
+
+                <div class="a">
+                    NFT is blah and also blah blah. This is because of the blah that caused the blah blah.
+                </div>
+
+                <div class="q">
+                    Where is NFT?
+                </div>
+
+                <div class="a">
+                    NFT is located blah at blah blah because of the blah that blah blah. You know the blah blah.
+                </div>
+
+                <div class="q">
+                    How is NFT?
+                </div>
+
+                <div class="a">
+                    NFT is good. Thanks for asking how the NFT is. You are one of a kind.
+                </div>
+
+                <div class="q">
+                    When is NFT?
+                </div>
+
+                <div class="a">
+                    NFT is whenever you want it to be. The abstract NFT is blah and blah blah. Blah blah blah blah blah.
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="navbar">
+    <div class="navbar" id="navbar">
         <div class="navleft">
             <div class="nchild">
-                <a>Even width</a>
+                <a href="#roadmap">Roadmap</a>
             </div>
 
             <div class="nchild">
-                <a>With the</a>
+                <a href="#faq">FAQ</a>
+            </div>
+
+            <div class="nchild">
+                <a>Team</a>
             </div>
 
         </div>
@@ -125,7 +232,7 @@
         <div class="navmiddle">
 
             <div class="nchild">
-                <img src="cat.png" width=90px;>
+                <img href="#body" src="cat.png" width=90px;>
             </div>
         </div>
 
@@ -139,17 +246,10 @@
             </div>
 
             <div class="nchild">
-                <a>Right side</a>
+                <a href="https://opensea.io/account/insertnameofnft" target="_blank">My NFT</a>
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
 
     <script type="text/javascript" src="index.js"></script>
 </body>

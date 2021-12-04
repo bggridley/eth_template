@@ -73,10 +73,18 @@ class Star {
     }
 }
 
+
+var r = true;
 function onload() {
+
+    duplicateChildNodes("marquee_img");
+
     loadEth();
     showRemaining();
     rs();
+
+ 
+    r = false;
 
     window.onresize = rs;
     window.requestAnimationFrame(update);
@@ -94,12 +102,31 @@ function update() {
     window.requestAnimationFrame(update);
 }
 
-function rs() { // response star or resize however you wanna look at it
+// this is a bit of a hack, but it allows us to make the marquee work
+
+function duplicateChildNodes (parentId){
+    var parent = document.getElementById(parentId);
+    NodeList.prototype.forEach = Array.prototype.forEach;
+    var children = parent.childNodes;
+    children.forEach(function(item){
+      var cln = item.cloneNode(true);
+      parent.appendChild(cln);
+    });
+  };
+
+
+function closeModal() {
     document.getElementById("modal").style.display = "none";
+    document.getElementById("navbar").style.position = "sticky";
+}
+
+function rs() { // response star or resize however you wanna look at it
+    //document.getElementById("marquee").style.height = document.getElementById("marquee_img").clientHeight;
+    closeModal();
     canvas.height = document.getElementById('body').clientHeight;
     canvas.width = canvas.clientWidth;
     for (var i = 0; i < amount; i++) {
-        responsiveStar(true, i);
+        responsiveStar(r, i);
     }
 
 }
@@ -108,28 +135,48 @@ function responsiveStar(load, i) {
     var cw = canvas.clientWidth;
     var ch = canvas.clientHeight;
     if (load) {
-
-
         stars[i] = new Star(cw, ch);
-    } else {
-        var s = stars[i];
-        s.x *= (cw / s.ow);
-        s.y *= (ch / s.oh);
-        alert("a");
-        stars[i] = s;
     }
-
 }
 
 function toggleModal() {
     var value = document.getElementById("modal").style.display;
     var set = value != "flex" ? "flex" : "none";
     document.getElementById("modal").style.display = set;
+
+    var value2 = document.getElementById("navbar").style.position;
+    var set2 =  value2 != "sticky" ? "sticky" : "fixed";
+
+    document.getElementById("navbar").style.position = set2;
+}
+
+function toRGBString(v) {
+    return "rgb(" + v[0] + ", " + v[1] + ", " + v[2] + ")"; 
 }
 
 function draw() {
     var grd = context.createLinearGradient(0, 0, 0, canvas.clientHeight);
-    grd.addColorStop(0, "rgb(1, 69, 186)");
+    color1 = [1, 69, 186];
+    color2 = [255, 117, 198];
+
+
+
+
+    var sy = window.scrollY;
+    if(sy < 1400) {
+        grd.addColorStop(0, toRGBString(color1));
+    } else if (sy < 1800) {
+        var interp = (sy - 1400) / 400.0; // interpolation as a percent'
+
+        var r = color2[0] - color1[0];
+        var g = color2[1] - color1[1];
+        var b = color2[1] - color1[1];
+        var color = [color1[0] + r * interp, color1[1] + g * interp, color1[2] + b * interp];
+        grd.addColorStop(0, toRGBString(color));
+    } else {
+        grd.addColorStop(0, toRGBString(color2));
+    }
+
     grd.addColorStop(1, "white");
 
     // Fill with gradient

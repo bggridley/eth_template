@@ -28,11 +28,10 @@ function loadEth() {
         });
 
         ethereum.on('connect', (chain) => {
-            alert(chain.chainId); // this way we can check if we're on the mainnet
+           // alert(chain.chainId); // this way we can check if we're on the mainnet
         });
 
         ethereum.on('accountsChanged', (accounts) => {
-            alert('changed');
             if (accounts[0] === undefined) {
                 account = undefined;
                 updateDisconnected();
@@ -46,12 +45,14 @@ function loadEth() {
 
 function updateDisconnected() {
     document.getElementById("connect_wallet_menu").innerHTML = "CONNECT WALLET";
+    document.getElementById("connect_wallet_menu").style.color = "white";
     document.getElementById("connect_wallet_nav").innerHTML = "Connect Wallet";
     document.getElementById("connect_wallet_nav").style.color = "white";
 }
 
 function updateConnected() {
     document.getElementById("connect_wallet_menu").innerHTML = "CONNECTED";
+    document.getElementById("connect_wallet_menu").style.color = "lawngreen";
     document.getElementById("connect_wallet_nav").innerHTML = "Connected";
-    document.getElementById("connect_wallet_nav").style.color = "green";
+    document.getElementById("connect_wallet_nav").style.color = "lawngreen";
 }
