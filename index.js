@@ -73,9 +73,31 @@ class Star {
     }
 }
 
+const observerOptions = {
+    root: null,
+    threshold: 0,
+    rootMargin: "0px 0px -50px 0px"
+};
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+
 
 var r = true;
 function onload() {
+
+    const sections = Array.from(document.getElementsByClassName('fadeup'));
+
+    for (let section of sections) {
+        observer.observe(section);
+    }
 
     duplicateChildNodes("marquee_img");
 
@@ -83,7 +105,7 @@ function onload() {
     showRemaining();
     rs();
 
- 
+
     r = false;
 
     window.onresize = rs;
@@ -104,15 +126,21 @@ function update() {
 
 // this is a bit of a hack, but it allows us to make the marquee work
 
-function duplicateChildNodes (parentId){
+function duplicateChildNodes(parentId) {
     var parent = document.getElementById(parentId);
     NodeList.prototype.forEach = Array.prototype.forEach;
     var children = parent.childNodes;
-    children.forEach(function(item){
-      var cln = item.cloneNode(true);
-      parent.appendChild(cln);
+    children.forEach(function (item) {
+        var cln = item.cloneNode(true);
+        parent.appendChild(cln);
     });
-  };
+};
+
+
+/* implement this later. it's not that important right now. just copy pasta */
+function addSocialMedia() {
+
+}
 
 
 function closeModal() {
@@ -145,13 +173,13 @@ function toggleModal() {
     document.getElementById("modal").style.display = set;
 
     var value2 = document.getElementById("navbar").style.position;
-    var set2 =  value2 != "sticky" ? "sticky" : "fixed";
+    var set2 = value2 != "sticky" ? "sticky" : "fixed";
 
     document.getElementById("navbar").style.position = set2;
 }
 
 function toRGBString(v) {
-    return "rgb(" + v[0] + ", " + v[1] + ", " + v[2] + ")"; 
+    return "rgb(" + v[0] + ", " + v[1] + ", " + v[2] + ")";
 }
 
 function draw() {
@@ -163,7 +191,7 @@ function draw() {
 
 
     var sy = window.scrollY;
-    if(sy < 1400) {
+    if (sy < 1400) {
         grd.addColorStop(0, toRGBString(color1));
     } else if (sy < 1800) {
         var interp = (sy - 1400) / 400.0; // interpolation as a percent'
@@ -188,12 +216,13 @@ function draw() {
         var s = stars[i];
 
 
-        context.translate
-        context.fillRect(s.x, s.y, s.w, s.w);
+       // alert(canvas.clientWidth + ", " + s.ow);
+        context.fillRect(s.x * (canvas.clientWidth / s.ow), s.y, s.w, s.w);
     }
 
 
 
 }
+
 window.onresize = rs;
 document.onload = onload();
